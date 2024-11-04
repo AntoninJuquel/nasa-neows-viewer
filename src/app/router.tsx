@@ -16,4 +16,11 @@ export const router = createBrowserRouter([
       return { Component: Browse };
     },
   },
+  {
+    path: paths.lookup.path,
+    async lazy() {
+      const { Lookup, lookupLoader } = await import("./routes/lookup");
+      return { Component: Lookup, loader: lookupLoader };
+    },
+  },
 ]);
