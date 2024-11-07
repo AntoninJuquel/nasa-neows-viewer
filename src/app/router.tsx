@@ -10,17 +10,26 @@ export const router = createBrowserRouter([
     },
   },
   {
-    path: paths.browse.path,
+    path: paths.app.root.path,
     async lazy() {
-      const { Browse } = await import("./routes/browse");
-      return { Component: Browse };
+      const { Root } = await import("./routes/root/root");
+      return { Component: Root };
     },
-  },
-  {
-    path: paths.lookup.path,
-    async lazy() {
-      const { Lookup, lookupLoader } = await import("./routes/lookup");
-      return { Component: Lookup, loader: lookupLoader };
-    },
+    children: [
+      {
+        path: paths.app.browse.path,
+        async lazy() {
+          const { Browse } = await import("./routes/root/browse");
+          return { Component: Browse };
+        },
+      },
+      {
+        path: paths.app.lookup.path,
+        async lazy() {
+          const { Lookup, lookupLoader } = await import("./routes/root/lookup");
+          return { Component: Lookup, loader: lookupLoader };
+        },
+      },
+    ],
   },
 ]);

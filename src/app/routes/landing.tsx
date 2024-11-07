@@ -6,7 +6,7 @@ export function Landing() {
   const navigate = useNavigate();
 
   function handleStart() {
-    navigate(paths.browse.path);
+    navigate(paths.app.root.getHref());
   }
 
   return (

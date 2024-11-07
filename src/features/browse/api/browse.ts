@@ -1,8 +1,8 @@
 import { api } from "@/lib/api-client";
-import { Browse } from "@/types/api";
+import { Browse, Page } from "@/types/api";
 
 export interface BrowseParams {
-  page?: number;
+  page?: Page["number"];
 }
 
 export function browse(params: BrowseParams = { page: 0 }) {

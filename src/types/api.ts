@@ -35,7 +35,7 @@ export interface NearEarthObject {
   estimated_diameter: EstimatedDiameter;
   is_potentially_hazardous_asteroid: boolean;
   close_approach_data: CloseApproachDaum[];
-  orbital_data: OrbitalData;
+  orbital_data: OrbitalDaum;
   is_sentry_object: boolean;
 }
 
@@ -88,7 +88,7 @@ export interface MissDistance {
   miles: string;
 }
 
-export interface OrbitalData {
+export interface OrbitalDaum {
   orbit_id: string;
   orbit_determination_date: string;
   first_observation_date: string;

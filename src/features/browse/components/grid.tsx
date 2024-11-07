@@ -1,5 +1,5 @@
 import { AgGridReact } from "ag-grid-react";
-import { IServerSideDatasource, RowClickedEvent } from "ag-grid-enterprise";
+import { CellClickedEvent, IServerSideDatasource } from "ag-grid-enterprise";
 import "ag-grid-enterprise";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-material.css";
@@ -27,8 +27,8 @@ const serverSideDatasource: IServerSideDatasource = {
 export function Grid() {
   const navigate = useNavigate();
 
-  function handleRowClicked(row: RowClickedEvent<NearEarthObject>) {
-    navigate(paths.lookup.getHref(row.data!.id));
+  function handleCellClicked(row: CellClickedEvent<NearEarthObject>) {
+    navigate(paths.app.lookup.getHref(row.data!.id));
   }
 
   return (
@@ -36,7 +36,11 @@ export function Grid() {
       <AgGridReact<NearEarthObject>
         rowModelType="serverSide"
         columnDefs={[
-          { field: "name" },
+          {
+            field: "name",
+            onCellClicked: handleCellClicked,
+            cellStyle: { cursor: "pointer" },
+          },
           {
             field: "is_potentially_hazardous_asteroid",
             headerName: "Hazardous",
@@ -48,16 +52,16 @@ export function Grid() {
             cellRenderer: UrlRenderer,
           },
         ]}
-        rowHeight={40}
+        rowHeight={38}
         defaultColDef={{
           sortable: false,
+          suppressHeaderMenuButton: true,
         }}
         serverSideDatasource={serverSideDatasource}
         pagination
         paginationPageSizeSelector={false}
         paginationPageSize={20}
         cacheBlockSize={20}
-        onRowClicked={handleRowClicked}
       />
     </div>
   );

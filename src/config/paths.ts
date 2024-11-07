@@ -1,16 +1,23 @@
 export const paths = {
   landing: {
     path: "/",
+    getHref: () => "/",
   },
-
-  browse: {
-    path: "/browse",
-  },
-
-  lookup: {
-    path: "/lookup/:id",
-    getHref(id: string) {
-      return `/lookup/${id}`;
+  app: {
+    root: {
+      path: "/app",
+      getHref: () => "/app",
+      name: ""
+    },
+    browse: {
+      path: "",
+      getHref: () => "/app",
+      name: "Browse",
+    },
+    lookup: {
+      path: "lookup/:id",
+      getHref: (id: string) => `/app/lookup/${id}`,
+      name: "",
     },
   },
 } as const;
