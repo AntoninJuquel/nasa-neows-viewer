@@ -28,7 +28,7 @@ export function Navbar({ routes }: NavbarProps) {
               buttonVariants({ size: "icon", variant: "ghost" }),
               "mr-6 lg:hidden flex"
             )}
-            href="/"
+            href="#/"
           >
             <HomeIcon className="h-6 w-6" />
             <span className="sr-only">Acme Inc</span>
@@ -37,11 +37,11 @@ export function Navbar({ routes }: NavbarProps) {
             {routes.map((route) => (
               <a
                 key={route.href}
+                href={`#${route.href}`}
                 className={cn(
                   buttonVariants({ variant: "link" }),
                   "flex w-full"
                 )}
-                href={route.href}
               >
                 {route.name}
               </a>
@@ -54,7 +54,7 @@ export function Navbar({ routes }: NavbarProps) {
           buttonVariants({ size: "icon", variant: "ghost" }),
           "mr-6 hidden lg:flex"
         )}
-        href="/"
+        href="#/"
       >
         <HomeIcon className="h-6 w-6" />
         <span className="sr-only">Acme Inc</span>
@@ -63,7 +63,7 @@ export function Navbar({ routes }: NavbarProps) {
         {routes.map((route) => (
           <a
             key={route.href}
-            href={route.href}
+            href={`#${route.href}`}
             className={buttonVariants({ variant: "link" })}
           >
             {route.name}

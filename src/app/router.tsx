@@ -1,7 +1,7 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createHashRouter } from "react-router-dom";
 import { paths } from "@/config/paths";
 
-export const router = createBrowserRouter([
+export const router = createHashRouter([
   {
     path: paths.landing.path,
     async lazy() {
