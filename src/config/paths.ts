@@ -1,22 +1,22 @@
 export const paths = {
   landing: {
-    path: "/",
-    getHref: () => "/",
+    path: "/nasa-neows-viewer/",
+    getHref: () => "/nasa-neows-viewer/",
   },
   app: {
     root: {
-      path: "/app",
-      getHref: () => "/app",
+      path: "/nasa-neows-viewer/app",
+      getHref: () => "/nasa-neows-viewer/app",
       name: ""
     },
     browse: {
       path: "",
-      getHref: () => "/app",
+      getHref: () => "/nasa-neows-viewer/app",
       name: "Browse",
     },
     lookup: {
       path: "lookup/:id",
-      getHref: (id: string) => `/app/lookup/${id}`,
+      getHref: (id: string) => `/nasa-neows-viewer/app/lookup/${id}`,
       name: "",
     },
   },
