@@ -15,6 +15,41 @@ export function Landing() {
         <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
           <span className="block">Nasa Neo Viewer</span>
         </h2>
+
+        <p className="mt-4 text-lg leading-6 text-gray-500">
+          View the Near Earth Objects tracked by NASA
+        </p>
+
+        <p className="mt-4 text-lg leading-6 text-gray-500">
+          This app is a demo of a React app using the following technologies:
+        </p>
+
+        <ul className="flex justify-center space-x-5 mt-4 text-lg leading-6 text-gray-500">
+          <li className="flex items-center justify-center">
+            <i className="devicon-react-original colored" /> React
+          </li>
+          <li className="flex items-center justify-center">
+            <i className="devicon-redux-original colored" /> Redux
+          </li>
+          <li className="flex items-center justify-center">
+            <i className="devicon-playwright-plain colored" /> Playwright
+          </li>
+          <li className="flex items-center justify-center">
+            <img
+              src="https://blog.ag-grid.com/content/images/2021/11/200pxArtboard-5.png"
+              className="h-[18px] w-[18px]"
+            />{" "}
+            Ag Grid
+          </li>
+          <li className="flex items-center justify-center">
+            <img
+              src="https://static.cdnlogo.com/logos/h/22/highcharts.svg"
+              className="h-[18px] w-[18px]"
+            />{" "}
+            Highcharts
+          </li>
+        </ul>
+
         <div className="mt-8 flex justify-center">
           <div className="inline-flex rounded-md shadow">
             <Button
