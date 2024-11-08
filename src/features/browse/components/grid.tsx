@@ -6,8 +6,9 @@ import "ag-grid-community/styles/ag-theme-material.css";
 import { browse } from "@/features/browse/api/browse";
 import { useNavigate } from "react-router-dom";
 import { NearEarthObject } from "@/types/api";
-import { UrlRenderer } from "./urlRenderer";
+import { UrlRenderer } from "./url-renderer";
 import { paths } from "@/config/paths";
+import { HazardousRenderer } from "./hazardous-renderer";
 
 const serverSideDatasource: IServerSideDatasource = {
   async getRows(params) {
@@ -44,6 +45,7 @@ export function Grid() {
           {
             field: "is_potentially_hazardous_asteroid",
             headerName: "Hazardous",
+            cellRenderer: HazardousRenderer,
           },
           {
             field: "nasa_jpl_url",

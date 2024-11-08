@@ -10,9 +10,10 @@ interface Route {
 
 export interface NavbarProps {
   routes: Route[];
+  activeRoute: string;
 }
 
-export function Navbar({ routes }: NavbarProps) {
+export function Navbar({ routes, activeRoute }: NavbarProps) {
   return (
     <header className="flex h-20 w-full shrink-0 items-center px-4 md:px-6">
       <Sheet>
@@ -37,10 +38,11 @@ export function Navbar({ routes }: NavbarProps) {
             {routes.map((route) => (
               <a
                 key={route.href}
-                href={`#${route.href}`}
+                href={activeRoute !== route.href ? `#${route.href}` : undefined}
                 className={cn(
                   buttonVariants({ variant: "link" }),
-                  "flex w-full"
+                  "flex w-full select-none",
+                  activeRoute === route.href && "underline"
                 )}
               >
                 {route.name}
@@ -63,8 +65,12 @@ export function Navbar({ routes }: NavbarProps) {
         {routes.map((route) => (
           <a
             key={route.href}
-            href={`#${route.href}`}
-            className={buttonVariants({ variant: "link" })}
+            href={activeRoute !== route.href ? `#${route.href}` : undefined}
+            className={cn(
+              buttonVariants({ variant: "link" }),
+              "select-none",
+              activeRoute === route.href && "underline"
+            )}
           >
             {route.name}
           </a>
