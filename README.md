@@ -1,50 +1,87 @@
-# React + TypeScript + Vite
+# Nasa Neo Viewer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a demonstration of using **React**, **Redux**, **Highcharts**, **AG Grid**, and **Playwright** to build a dynamic, interactive application for browsing Near-Earth Objects (NEOs) using NASA's NEOWS (Near Earth Object Web Service) API.
 
-Currently, two official plugins are available:
+[Live Demo](https://antoninjuquel.github.io/nasa-neows-viewer/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Project Overview
 
-## Expanding the ESLint configuration
+The Nasa Neo Viewer app is built to showcase the integration of multiple libraries and frameworks to create an interactive, data-driven React application. It consists of three main pages, with each one designed for a specific purpose and utilizing NASA's neo dataset.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Features
 
-- Configure the top-level `parserOptions` property like this:
+- **React** for building the UI components
+- **Redux** for state management across components, especially for sharing filter data across multiple views
+- **AG Grid** for handling large datasets with server-side pagination
+- **Highcharts** for visualizing neo speed and miss distance data over time
+- **Playwright** for end-to-end testing and validating user flows and component interactions
+- **React Router DOM** for managing page navigation
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### NASA NEOWS API
+
+This project uses the [NASA Near Earth Object Web Service (NEOWS) API](https://api.nasa.gov/) to fetch data about near-earth objects.
+
+## Pages
+
+### 1. landing
+
+The `landing` page serves as an introduction to the project, describing its purpose and providing an overview of the features and technologies used.
+
+### 2. browse
+
+The `browse` page allows users to browse a list of Near-Earth Objects (NEOs). This page includes:
+
+- A grid view using **AG Grid** to display neo data with server-side pagination.
+- Data fetched from the NASA NEOWS API (`GET https://api.nasa.gov/neo/rest/v1/neo/browse/`).
+- Clickable rows to navigate to individual neo details on the `lookup` page.
+
+### 3. lookup
+
+The `lookup` page provides detailed information on a specific NEO. This page is accessed by clicking on an neo in the `BrowsePage`, which triggers an API call to the NEOWS Lookup endpoint to retrieve additional details.
+
+- **Highcharts** displays the neo's speed and miss distance over time.
+- Users can filter the `orbiting_body` data via **Redux**-managed state, which updates the charts accordingly.
+- Additional neo details are displayed using **AG Grid** for structured organization.
+
+## Getting Started
+
+### Prerequisites
+
+- **Node.js** (>= 14.x)
+- A **NASA API Key** (register at [NASA API](https://api.nasa.gov/))
+
+### Installation
+
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/AntoninJuquel/nasa-neows-viewer.git
+   cd nasa-neows-viewer
+   ```
+
+2. Install dependencies:
+   ```bash
+   yarn
+   ```
+
+3. Set up environment variables:
+   Create a `.env` file in the root directory and add your NASA API key and the NASA API base url:
+   ```plaintext
+   VITE_APP_NASA_API_KEY=YOUR_NASA_API_KEY
+   VITE_APP_NASA_API_URL=NASA_API_BASE_URL
+   ```
+
+4. Start the development server:
+   ```bash
+   yarn dev
+   ```
+
+### Running Tests
+
+The project uses **Playwright** for end-to-end testing. To run tests, execute:
+```bash
+yarn test
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## License
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+This project is licensed under the MIT License.
